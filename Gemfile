@@ -59,4 +59,6 @@ end
 
 gem 'rename'
 
+gem 'devise'
+
 

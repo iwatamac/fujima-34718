@@ -119,12 +119,15 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include "Password Include both letters and numbers"
       end
-      it 'last_nameとfirst_nameが全角(漢字、カタカナ、ひらがな)でなければ登録できない' do
+      it 'last_nameが全角(漢字、カタカナ、ひらがな)でなければ登録できない' do
         @user.last_name = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include 'Last name is invalid. Input full_width characters.'
+      end
+      it 'first_nameが全角(漢字、カタカナ、ひらがな)でなければ登録できない' do
         @user.first_name = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include 'Last name is invalid. Input full_width characters.',
-                                                      'First name is invalid. Input full_width characters.'
+        expect(@user.errors.full_messages).to include 'First name is invalid. Input full_width characters.'
       end
       it 'last_name_kanaとfirst_name_kanaが全角(カタカナ)でなければ登録できない' do
         @user.last_name_kana = 'aあ阿'

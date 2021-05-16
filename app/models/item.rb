@@ -16,8 +16,7 @@ class Item < ApplicationRecord
     validates :responsibility_id
     validates :delivery_area_id
     validates :delivery_days_id
-    validates :price, inclusion: { in: 300..9_999_999, message: 'is out of setting range' },
-                      format: { with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters' }
+    validates :price, inclusion: { in: 300..9_999_999, message: 'is out of setting range' }
     validates :image
   end
 

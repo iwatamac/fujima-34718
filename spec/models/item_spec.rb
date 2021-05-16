@@ -32,27 +32,27 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include "Description can't be blank"
       end
       it 'category_idのidが0なら出品できない' do
-        @item.category_id = '0'
+        @item.category_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include 'Category must be other than 0'
       end
       it 'condition_idのidが0なら出品できない' do
-        @item.condition_id = '0'
+        @item.condition_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include 'Condition must be other than 0'
       end
       it 'responsibility_idのidが0なら出品できない' do
-        @item.responsibility_id = '0'
+        @item.responsibility_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include 'Responsibility must be other than 0'
       end
       it 'delivery_area_idのidが0なら出品できない' do
-        @item.delivery_area_id = '0'
+        @item.delivery_area_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include 'Delivery area must be other than 0'
       end
       it 'delivery_days_idのidが0なら出品できない' do
-        @item.delivery_days_id = '0'
+        @item.delivery_days_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include 'Delivery days must be other than 0'
       end

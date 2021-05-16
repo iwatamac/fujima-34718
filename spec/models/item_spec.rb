@@ -42,27 +42,27 @@ RSpec.describe Item, type: :model do
       it 'category_idのidが0なら出品できない' do
         @item.category_id = '0'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Category must be other than 0"
+        expect(@item.errors.full_messages).to include 'Category must be other than 0'
       end
       it 'condition_idのidが0なら出品できない' do
         @item.condition_id = '0'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Condition must be other than 0"
+        expect(@item.errors.full_messages).to include 'Condition must be other than 0'
       end
       it 'responsibility_idのidが0なら出品できない' do
         @item.responsibility_id = '0'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Responsibility must be other than 0"
+        expect(@item.errors.full_messages).to include 'Responsibility must be other than 0'
       end
       it 'delivery_area_idのidが0なら出品できない' do
         @item.delivery_area_id = '0'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Delivery area must be other than 0"
+        expect(@item.errors.full_messages).to include 'Delivery area must be other than 0'
       end
       it 'delivery_days_idのidが0なら出品できない' do
         @item.delivery_days_id = '0'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Delivery days must be other than 0"
+        expect(@item.errors.full_messages).to include 'Delivery days must be other than 0'
       end
       it 'priceが空では出品できない' do
         @item.price = ''
@@ -72,12 +72,13 @@ RSpec.describe Item, type: :model do
       it 'priceが半角数字でなければ出品できない' do
         @item.price = '９９９'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is out of setting range", "Price is invalid. Input half-width characters"
+        expect(@item.errors.full_messages).to include 'Price is out of setting range',
+                                                      'Price is invalid. Input half-width characters'
       end
       it 'priceが300~9999999でなければ出品できない' do
         @item.price = '111'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is out of setting range"
+        expect(@item.errors.full_messages).to include 'Price is out of setting range'
       end
       it 'imageが空では出品できない' do
         @item.image = nil
@@ -87,7 +88,7 @@ RSpec.describe Item, type: :model do
       it 'ユーザーに紐づいていなければ出品できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include "User must exist"
+        expect(@item.errors.full_messages).to include 'User must exist'
       end
     end
   end

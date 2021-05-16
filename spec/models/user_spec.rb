@@ -76,19 +76,19 @@ RSpec.describe User, type: :model do
         @user.password = 'aaaaaa'
         @user.password_confirmation = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password Include both letters and numbers"
+        expect(@user.errors.full_messages).to include 'Password Include both letters and numbers'
       end
       it '数字のみでは登録できない' do
         @user.password = '111111'
         @user.password_confirmation = '111111'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password Include both letters and numbers"
+        expect(@user.errors.full_messages).to include 'Password Include both letters and numbers'
       end
       it '全角では登録できない' do
         @user.password = 'ａａａａａａ'
         @user.password_confirmation = 'ａａａａａａ'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password Include both letters and numbers"
+        expect(@user.errors.full_messages).to include 'Password Include both letters and numbers'
       end
       it 'last_nameが空だと登録できない' do
         @user.last_name = ''
@@ -138,7 +138,7 @@ RSpec.describe User, type: :model do
         @user.birthday = ''
         @user.valid?
         expect(@user.errors.full_messages).to include "Birthday can't be blank"
-      end  
+      end
     end
   end
 end

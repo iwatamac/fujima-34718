@@ -18,14 +18,6 @@ RSpec.describe Item, type: :model do
         @item.description = 'a' * 1000
         expect(@item).to be_valid
       end
-      it 'priceが300円なら出品できる' do
-        @item.price = '300'
-        expect(@item).to be_valid
-      end
-      it 'priceが9999999円なら出品できる' do
-        @item.price = '9999999'
-        expect(@item).to be_valid
-      end
     end
 
     context '商品出品ができない場合' do
@@ -75,10 +67,15 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include 'Price is out of setting range',
                                                       'Price is invalid. Input half-width characters'
       end
-      it 'priceが300~9999999でなければ出品できない' do
-        @item.price = '111'
+      it 'priceが299以下の場合は保存できない' do
+        @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include 'Price is out of setting range'
+        expect(@item.errors.full_messages).to include "Price is out of setting range"
+      end
+      it 'priceが10,000,000以上の場合は保存できない' do
+        @item.price = 10000000
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Price is out of setting range"
       end
       it 'imageが空では出品できない' do
         @item.image = nil

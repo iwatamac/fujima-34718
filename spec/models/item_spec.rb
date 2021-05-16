@@ -61,8 +61,25 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Price can't be blank"
       end
-      it 'priceが半角数字でなければ出品できない' do
+      it 'priceが全角数字では出品できない' do
         @item.price = '９９９'
+        @item.valid?
+        expect(@item.errors.full_messages).to include 'Price is out of setting range',
+                                                      'Price is invalid. Input half-width characters'
+      end
+      it 'priceが全角文字では出品できない' do
+        @item.price = 'あああ'
+        @item.valid?
+        expect(@item.errors.full_messages).to include 'Price is out of setting range',
+                                                      'Price is invalid. Input half-width characters'
+      end
+      it 'priceが英数字混合では出品できない' do
+        @item.price = '999aaa'
+        @item.valid?
+        expect(@item.errors.full_messages).to include 'Price is invalid. Input half-width characters'                                                
+      end
+      it 'priceが半角英語では出品できない' do
+        @item.price = 'aaa'
         @item.valid?
         expect(@item.errors.full_messages).to include 'Price is out of setting range',
                                                       'Price is invalid. Input half-width characters'

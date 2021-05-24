@@ -5,9 +5,9 @@ RSpec.describe OrderAddress, type: :model do
     @order_address = FactoryBot.build(:order_address)
   end
 
-  describe '配送先入力' do
-    context '配送先が保存できるとき' do
-      it '配送先すべての値が正しく入力できていれば保存できる' do
+  describe 'クレジットカード情報と配送先入力' do
+    context '商品を購入できるとき' do
+      it 'すべての値が正しく入力できていれば保存できる' do
         expect(@order_address).to be_valid
       end
       it 'building_nameが空でも保存ができる' do
@@ -16,7 +16,7 @@ RSpec.describe OrderAddress, type: :model do
       end
     end
     
-    context '配送先が保存できないとき' do
+    context '商品を購入できないとき' do
       it 'postal_codeが空だと保存できない' do
         @order_address.postal_code = ''
         @order_address.valid?
@@ -107,6 +107,11 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.item_id = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include "Item can't be blank"
+      end
+      it 'tokenが空だと保存できない' do
+        @order_address.token = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include "Token can't be blank"
       end
     end
   end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe OrderAddress, type: :model do
   before do
-    @order_address = FactoryBot.build(:order_address)
+    @order_address = FactoryBot.build(:order_address, user_id: [:user_id], item_id: [:item_id])
   end
 
   describe 'クレジットカード情報と配送先入力' do

@@ -6,8 +6,8 @@ FactoryBot.define do
     house_number          { '青山1-1-1' }
     building_name         { '柳ビル103' }
     phone_number          { '08012345678' }
-    user_id               { 1 }
-    item_id               { 1 }
     token                 { ENV['PAYJP_SECRET_KEY'] }
+    association :user
+    association :item
   end
 end

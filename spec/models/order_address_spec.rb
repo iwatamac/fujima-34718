@@ -103,7 +103,7 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include 'Phone number is invalid. Input only number'
       end
       it 'phone_numberが英数字混合では保存できない' do
-        @order_address.phone_number = '１１１１１１11111'
+        @order_address.phone_number = '１１１１1111aaa'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include 'Phone number is invalid. Input only number'
       end
